@@ -99,9 +99,9 @@ struct InputData {
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
     let input_file = File::open(args.datapath)?;
-    println(input_file)
+    println!("{:?}", input_file);
     let input_data: InputData = serde_json::from_reader(input_file)?;
-    println(input_data)
+    println!("{:?}", input_data);
 
     let device = match args.cuda_device {
         None => Device::Cpu,
