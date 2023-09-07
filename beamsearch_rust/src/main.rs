@@ -100,7 +100,7 @@ struct InputData {
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
     let input_file = File::open(args.datapath)?;
-    let reader = BufReader::new(file);
+    let reader = BufReader::new(input_file);
     println!("{:?}", input_file);
     let input_data: InputData = serde_json::from_reader(reader)?;
     println!("{:?}", input_data);
