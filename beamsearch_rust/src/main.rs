@@ -100,10 +100,11 @@ struct InputData {
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
     let input_file = File::open(args.datapath)?;
-    let reader = BufReader::new(input_file);
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
     println!("{:?}", input_file);
-    let input_data: InputData = serde_json::from_reader(reader)?;
-    println!("{:?}", input_data);
+    let input_data: InputData = serde_json::from_str(&contents)?;
+    
 
     let device = match args.cuda_device {
         None => Device::Cpu,
