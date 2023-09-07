@@ -11,6 +11,7 @@ use std::fs::File;
 use std::io::Write;
 use std::path::PathBuf;
 use tch::Device;
+use std::io::BufReader;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 struct FutureCostProbs {
@@ -99,8 +100,9 @@ struct InputData {
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
     let input_file = File::open(args.datapath)?;
+    let reader = BufReader::new(file);
     println!("{:?}", input_file);
-    let input_data: InputData = serde_json::from_str(input_file)?;
+    let input_data: InputData = serde_json::from_reader(reader)?;
     println!("{:?}", input_data);
 
     let device = match args.cuda_device {
