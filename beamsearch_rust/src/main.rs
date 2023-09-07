@@ -101,7 +101,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
     let input_file = File::open(args.datapath)?;
     let mut contents = String::new();
-    file.read_to_string(&mut contents)?;
+    input_file.read_to_string(&mut contents)?;
     println!("{:?}", input_file);
     let input_data: InputData = serde_json::from_str(&contents)?;
     
