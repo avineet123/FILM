@@ -99,11 +99,8 @@ struct InputData {
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
-    let input_file = File::open(args.datapath)?;
-    let mut contents = String::new();
-    input_file.read_to_string(&mut contents)?;
-    println!("{:?}", input_file);
-    let input_data: InputData = serde_json::from_str(&contents)?;
+    let input_file = File::open("/kaggle/working/FILM/experiments/wikitext-103/dataset.json")?;
+    let input_data: InputData = serde_json::from_reader(input_file)?;
     
 
     let device = match args.cuda_device {
