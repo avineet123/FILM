@@ -107,7 +107,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             "Volume mgmt is trying to clear up these issues."
         ]
     "#;
-    let input_data: InputData = serde_json::from_reader(json_str)?;
+    let input_data: InputData = serde_json::from_str(json_str)?;
     
 
     let device = match args.cuda_device {
