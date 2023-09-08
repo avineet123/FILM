@@ -99,7 +99,6 @@ struct InputData {
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
-    let input_file = File::open("/kaggle/working/FILM/experiments/wikitext-103/dataset.json")?;
     let json_str = r#"
         [
             "Don and rogers have decided for cost management purposes to leave it consolidated at this point.",
