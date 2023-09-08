@@ -100,7 +100,14 @@ struct InputData {
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
     let input_file = File::open("/kaggle/working/FILM/experiments/wikitext-103/dataset.json")?;
-    let input_data: InputData = serde_json::from_reader(input_file)?;
+    let json_str = r#"
+        [
+            "Don and rogers have decided for cost management purposes to leave it consolidated at this point.",
+            "D just a couple of additional thoughts, the cost estimate for esd mods of $130, 000 will typically be, about 25% more.",
+            "Volume mgmt is trying to clear up these issues."
+        ]
+    "#;
+    let input_data: InputData = serde_json::from_reader(json_str)?;
     
 
     let device = match args.cuda_device {
